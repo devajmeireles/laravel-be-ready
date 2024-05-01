@@ -4,6 +4,7 @@ namespace DevAjMeireles\LaravelReady\PlugIns;
 
 use DevAjMeireles\LaravelReady\Actions\ExecuteCommand;
 use DevAjMeireles\LaravelReady\LaravelReady;
+use function Laravel\Prompts\info;
 
 class Stan
 {
@@ -39,6 +40,8 @@ CONTENT;
         $composer                   = json_decode(file_get_contents('composer.json'));
         $composer->scripts->analyse = './vendor/bin/phpstan analyse --memory-limit=2G';
         file_put_contents('composer.json', json_encode($composer, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+        info('LaraStan has been installed successfully.');
 
         return true;
     }

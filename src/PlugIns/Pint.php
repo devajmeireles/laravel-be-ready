@@ -4,6 +4,7 @@ namespace DevAjMeireles\LaravelReady\PlugIns;
 
 use DevAjMeireles\LaravelReady\Actions\ExecuteCommand;
 use DevAjMeireles\LaravelReady\LaravelReady;
+use function Laravel\Prompts\info;
 
 class Pint
 {
@@ -16,6 +17,8 @@ class Pint
         $composer                  = json_decode(file_get_contents('composer.json'));
         $composer->scripts->format = './vendor/bin/pint';
         file_put_contents('composer.json', json_encode($composer, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+        info('Pint has been installed successfully.');
 
         return true;
     }

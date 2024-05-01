@@ -3,6 +3,7 @@
 namespace DevAjMeireles\LaravelReady\PlugIns;
 
 use DevAjMeireles\LaravelReady\LaravelReady;
+use function Laravel\Prompts\info;
 
 class Comments
 {
@@ -32,6 +33,8 @@ class Comments
 
             file_put_contents($file, $content);
         }
+
+        info('All unnecessary comments have been removed.');
 
         return true;
     }

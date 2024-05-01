@@ -2,7 +2,7 @@
 
 namespace DevAjMeireles\LaravelReady;
 
-use function Laravel\Prompts\{confirm, info};
+use function Laravel\Prompts\{confirm, error, info};
 
 class LaravelReady
 {
@@ -39,13 +39,17 @@ class LaravelReady
 
             $class = 'DevAjMeireles\\LaravelReady\\PlugIns\\' . ucfirst($key);
 
-            (new $class())($this);
+            if (!is_string($result = (new $class())($this))) {
+                error("[Error] $key: $result");
+            }
         }
 
         info('Your project is ready! 🚀');
 
+        echo PHP_EOL;
+
         if (confirm('Do you want to delete this file?', required: true)) {
-            unlink(__FILE__);
+            @unlink(__FILE__);
 
             info('File deleted successfully');
         }
