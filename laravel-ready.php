@@ -1,5 +1,11 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
+(new DevAjMeireles\LaravelReady\LaravelReady())
+    ->ask()
+    ->execute();
+
 $env            = environment();
 $configurations = configurations();
 
@@ -17,7 +23,7 @@ require $autoload;
 
 use GuzzleHttp\Client;
 
-use function Laravel\Prompts\{confirm, error, info, multiselect, select, spin, text};
+use function Laravel\Prompts\{confirm, error, info, multiselect, select, text};
 
 use Symfony\Component\Process\Process;
 
@@ -293,8 +299,8 @@ function executeAlpineJsRemovalPreparation(): bool|string
             return $status;
         }
 
-        unlink(__DIR__.'/resources/js/app.js');
-        file_put_contents(__DIR__.'/resources/js/app.js', "import './bootstrap';");
+        unlink(__DIR__ . '/resources/js/app.js');
+        file_put_contents(__DIR__ . '/resources/js/app.js', "import './bootstrap';");
 
         return executeCommand("npm run build");
     } catch (Exception $e) {

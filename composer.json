@@ -15,7 +15,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "require-dev": {
-        "laravel/pint": "^1.12"
+    "require": {
+        "laravel/pint": "^1.12",
+        "illuminate/process": "^11.6",
+        "illuminate/http": "^11.6",
+        "laravel/prompts": "^0.1.21"
     }
 }
